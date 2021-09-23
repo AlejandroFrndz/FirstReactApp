@@ -14,8 +14,7 @@ const AddTask = ({onAdd}) => {
             return;
         } 
 
-        const id = Math.random() * 10000;
-        onAdd({id:id, text:task, day:date, reminder:reminder});
+        onAdd({text:task, day:date, reminder:reminder});
     }
 
     return (
