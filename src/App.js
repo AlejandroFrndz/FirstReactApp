@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import AddTask from './components/AddTask';
 import { Header } from './components/Header'
 import Tasks from './components/Tasks'
+import Footer from './components/Footer'
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -73,8 +74,8 @@ const App = () => {
       },
       body: JSON.stringify(updTask)
     });
-
     const data = await res.json();
+
     //Toggle UI marker
     setTasks(tasks.map((task) => task.id === taskId ? {...task, reminder: data.reminder} : task));
   }
@@ -84,6 +85,7 @@ const App = () => {
       <Header onToggle={toggleAddTask} showAddTask={showAddTask}/>
       {showAddTask && <AddTask onAdd={addTask}/>}
       <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+      <Footer />
     </div>
   );
 }
