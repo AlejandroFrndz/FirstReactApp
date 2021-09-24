@@ -1,13 +1,20 @@
 import Button from './Button';
 import PropTypes from 'prop-types'
+import { Route } from 'react-router';
+import NavBar from './NavBar';
 
 const Header = ({onToggle,showAddTask}) => {
 
     return(
-        <header className='header'>
-            <h1>Task Tracker</h1>
-            <Button color={showAddTask ? 'red' : 'green'} text={showAddTask ? 'cancel' : 'add'} onClick={onToggle}/>
-        </header>
+        <div>
+            <NavBar />
+            <header className='header'>
+                <h1>Task Tracker</h1>
+                <Route exact path='/' >
+                    <Button color={showAddTask ? 'red' : 'green'} text={showAddTask ? 'cancel' : 'add'} onClick={onToggle}/>
+                </Route>
+            </header>
+        </div>
     );
 }
 

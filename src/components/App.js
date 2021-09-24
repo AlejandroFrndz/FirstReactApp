@@ -3,15 +3,24 @@ import { Header } from './Header'
 import Tasks from './Tasks'
 import Footer from './Footer'
 import PropTypes from 'prop-types'
+import About from './About';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = ({ tasks, toggleAddTask, showAddTask, addTask, deleteTask, toggleReminder}) => {
   return (
-    <div className="container">
-      <Header onToggle={toggleAddTask} showAddTask={showAddTask}/>
-      {showAddTask && <AddTaskContainer onAdd={addTask}/>}
-      <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
-      <Footer />
-    </div>
+    <Router >
+      <div className="container">
+        <Header onToggle={toggleAddTask} showAddTask={showAddTask}/>
+        <Route exact path='/' >
+          {showAddTask && <AddTaskContainer onAdd={addTask}/>}
+          <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+        </Route>
+        <Route path='/about' >
+          <About />
+        </Route>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
