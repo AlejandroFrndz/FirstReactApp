@@ -1,22 +1,6 @@
-import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const AddTask = ({onAdd}) => {
-    const [task, setTask] = useState("");
-    const [date, setDate] = useState("");
-    const [reminder, setReminder] = useState(false);
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        if(!task){
-            alert('Please add your task');
-            return;
-        } 
-
-        onAdd({text:task, day:date, reminder:reminder});
-    }
-
+const AddTask = ({task, setTask, date, setDate, reminder, setReminder, onSubmit}) => {
     return (
         <form className='add-form' onSubmit={onSubmit}>
             <div className='form-control'>
@@ -60,7 +44,12 @@ const AddTask = ({onAdd}) => {
 }
 
 AddTask.propTypes = {
-    onAdd: PropTypes.func
+    task: PropTypes.string.isRequired,
+    setTask: PropTypes.func.isRequired,
+    date: PropTypes.string.isRequired,
+    setDate: PropTypes.func.isRequired,
+    reminder: PropTypes.bool.isRequired,
+    setReminder: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }
-
 export default AddTask
